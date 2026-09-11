@@ -1,74 +1,269 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kubernetes Docs</title>
+<meta name="color-scheme" content="light">
+<title>Kubernetes Visual Docs</title>
 <style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --text: #1f2328;
+    --muted: #656d76;
+    --border: #d8dee4;
+    --blue: #0969da;
+    --blue-soft: #ddf4ff;
+    --purple-soft: #fbefff;
+    --green-soft: #dafbe1;
+    --shadow: 0 8px 24px rgba(140, 149, 159, 0.14);
+  }
+
+  * { box-sizing: border-box; }
+
   body {
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    max-width: 900px;
-    margin: 48px auto;
-    padding: 0 20px;
-    background: #ffffff;
-    color: #3d3d3a;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
   }
+
+  .page {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 64px 0 48px;
+  }
+
+  .hero {
+    padding: 8px 0 34px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border: 1px solid #b6d7fa;
+    border-radius: 999px;
+    background: var(--blue-soft);
+    color: #0550ae;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+
   h1 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    margin: 16px 0 10px;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
   }
-  p {
-    color: #73726c;
-    margin-bottom: 28px;
+
+  .subtitle {
+    max-width: 760px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 17px;
   }
-  .list {
+
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 16px;
+    margin: 8px 0 16px;
+  }
+
+  .section-title h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .section-title span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .grid {
     display: grid;
-    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
   }
-  .item {
-    display: block;
-    padding: 18px 20px;
-    border: 1px solid #d9d8d2;
-    border-radius: 10px;
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--panel);
+    color: inherit;
     text-decoration: none;
-    color: #0C447C;
-    background: #fafaf8;
+    box-shadow: 0 1px 2px rgba(31, 35, 40, .04);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
   }
-  .item:hover {
-    background: #f3f7fb;
-    border-color: #185FA5;
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: #8c959f;
+    box-shadow: var(--shadow);
   }
-  .title {
-    font-size: 16px;
+
+  .icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    font-size: 21px;
+  }
+
+  .blue { background: var(--blue-soft); }
+  .purple { background: var(--purple-soft); }
+  .green { background: var(--green-soft); }
+
+  .tag {
+    width: fit-content;
+    margin-bottom: 9px;
+    color: var(--muted);
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
   }
-  .desc {
+
+  .card h3 {
+    margin: 0 0 9px;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--muted);
     font-size: 14px;
-    color: #73726c;
+  }
+
+  .open {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 22px;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .meta-item {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255,255,255,.7);
+  }
+
+  .meta-item strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  .meta-item span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  footer {
+    margin-top: 38px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  @media (max-width: 850px) {
+    .grid { grid-template-columns: 1fr; }
+    .meta { grid-template-columns: 1fr; }
+    .card { min-height: 0; }
+    .page { padding-top: 40px; }
   }
 </style>
 </head>
 <body>
-<h1>Kubernetes 图表与架构说明</h1>
-<p>用于查看 Kubernetes 核心流程与扩展机制的可视化页面。</p>
+<main class="page">
+  <section class="hero">
+    <div class="eyebrow">☸ Kubernetes Visual Docs</div>
+    <h1>Kubernetes 架构与核心流程</h1>
+    <p class="subtitle">
+      面向源码阅读与架构理解的可视化文档入口。通过架构图和时序图，快速理解 Kubernetes 的扩展机制、Deployment 控制循环以及 Pod 调度链路。
+    </p>
+  </section>
 
-<div class="list">
-  <a class="item" href="./kubernetes-extension.html">
-    <div class="title">Kubernetes 扩展体系</div>
-    <div class="desc">按 kube-apiserver、controller、scheduler、kubelet 等组件展示 Kubernetes 的主要扩展机制。</div>
-  </a>
+  <div class="section-title">
+    <h2>可视化文档</h2>
+    <span>3 个页面 · Mermaid 动态渲染</span>
+  </div>
 
-  <a class="item" href="./deployment-create-sequence.html">
-    <div class="title">Deployment 创建时序图</div>
-    <div class="desc">展示 kubectl、kube-apiserver、etcd 与 controller-manager 之间的 Deployment 创建链路。</div>
-  </a>
+  <section class="grid">
+    <a class="card" href="./kubernetes-extension.html">
+      <div class="icon blue">🧩</div>
+      <div class="tag">Architecture</div>
+      <h3>Kubernetes 扩展体系</h3>
+      <p>按 kube-apiserver、Controller、Scheduler、kubelet 等核心组件梳理 CRD、Webhook、Scheduler Plugin、CRI、CSI、CNI、Device Plugin 等扩展面。</p>
+      <div class="open">查看架构图 <span>→</span></div>
+    </a>
 
-  <a class="item" href="./pod-create-scheduling-sequence.html">
-    <div class="title">Pod 创建与调度时序图</div>
-    <div class="desc">展示 Pod 从创建、调度、绑定节点到 kubelet 启动运行的完整流程。</div>
-  </a>
-</div>
+    <a class="card" href="./deployment-create-sequence.html">
+      <div class="icon purple">⚙️</div>
+      <div class="tag">Control Loop</div>
+      <h3>Deployment 创建时序图</h3>
+      <p>从 kubectl apply 开始，展示 kube-apiserver、etcd 与 controller-manager 如何协作创建 Deployment 和 ReplicaSet。</p>
+      <div class="open">查看时序图 <span>→</span></div>
+    </a>
+
+    <a class="card" href="./pod-create-scheduling-sequence.html">
+      <div class="icon green">📅</div>
+      <div class="tag">Scheduling</div>
+      <h3>Pod 创建与调度时序图</h3>
+      <p>展示 Pod 从创建、进入待调度状态，到 Scheduler 完成 Filter / Score / Bind，再由 kubelet 启动工作负载的完整链路。</p>
+      <div class="open">查看时序图 <span>→</span></div>
+    </a>
+  </section>
+
+  <section class="meta" aria-label="站点信息">
+    <div class="meta-item">
+      <strong>发布方式</strong>
+      <span>GitHub Actions → GitHub Pages</span>
+    </div>
+    <div class="meta-item">
+      <strong>图表引擎</strong>
+      <span>Mermaid 11 · 浏览器动态渲染</span>
+    </div>
+    <div class="meta-item">
+      <strong>用途</strong>
+      <span>Kubernetes 架构学习与源码阅读辅助</span>
+    </div>
+  </section>
+
+  <footer>
+    Repository: <a href="https://github.com/ai-12345678/kubernetes">ai-12345678/kubernetes</a>
+  </footer>
+</main>
 </body>
 </html>
