@@ -2,10 +2,73 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=./kubernetes-extension.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kubernetes Docs</title>
+<style>
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    max-width: 900px;
+    margin: 48px auto;
+    padding: 0 20px;
+    background: #ffffff;
+    color: #3d3d3a;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  p {
+    color: #73726c;
+    margin-bottom: 28px;
+  }
+  .list {
+    display: grid;
+    gap: 14px;
+  }
+  .item {
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid #d9d8d2;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #0C447C;
+    background: #fafaf8;
+  }
+  .item:hover {
+    background: #f3f7fb;
+    border-color: #185FA5;
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .desc {
+    font-size: 14px;
+    color: #73726c;
+  }
+</style>
 </head>
 <body>
-<p>正在跳转到 <a href="./kubernetes-extension.html">Kubernetes 扩展体系</a>...</p>
+<h1>Kubernetes 图表与架构说明</h1>
+<p>用于查看 Kubernetes 核心流程与扩展机制的可视化页面。</p>
+
+<div class="list">
+  <a class="item" href="./kubernetes-extension.html">
+    <div class="title">Kubernetes 扩展体系</div>
+    <div class="desc">按 kube-apiserver、controller、scheduler、kubelet 等组件展示 Kubernetes 的主要扩展机制。</div>
+  </a>
+
+  <a class="item" href="./deployment-create-sequence.html">
+    <div class="title">Deployment 创建时序图</div>
+    <div class="desc">展示 kubectl、kube-apiserver、etcd 与 controller-manager 之间的 Deployment 创建链路。</div>
+  </a>
+
+  <a class="item" href="./pod-create-scheduling-sequence.html">
+    <div class="title">Pod 创建与调度时序图</div>
+    <div class="desc">展示 Pod 从创建、调度、绑定节点到 kubelet 启动运行的完整流程。</div>
+  </a>
+</div>
 </body>
 </html>
