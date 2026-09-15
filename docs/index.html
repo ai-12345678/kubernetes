@@ -211,13 +211,13 @@
     <div class="eyebrow">☸ Kubernetes Visual Docs</div>
     <h1>Kubernetes 架构与核心流程</h1>
     <p class="subtitle">
-      面向源码阅读与架构理解的可视化文档入口。通过架构图和时序图，快速理解 Kubernetes 的扩展机制、Deployment 控制循环以及 Pod 调度链路。
+      面向源码阅读与架构理解的可视化文档入口。通过架构图和时序图，快速理解 Kubernetes、Linux 与基础设施相关核心机制。
     </p>
   </section>
 
   <div class="section-title">
     <h2>学习文档</h2>
-    <span>4 个页面 · 概念笔记与可视化</span>
+    <span>5 个页面 · 概念笔记与可视化</span>
   </div>
 
   <section class="grid">
@@ -252,20 +252,28 @@
       <p>展示 Pod 从创建、进入待调度状态，到 Scheduler 完成 Filter / Score / Bind，再由 kubelet 启动工作负载的完整链路。</p>
       <div class="open">查看时序图 <span>→</span></div>
     </a>
+
+    <a class="card" href="./linux/ssh-proxycommand-auth-architecture.html">
+      <div class="icon purple">🔐</div>
+      <div class="tag">Linux / SSH</div>
+      <h3>SSH ProxyCommand + Auth 访问架构</h3>
+      <p>说明 OpenSSH 如何通过 ProxyCommand 将 host、port、user 交给 auth-cli，并经 auth-server 建立到目标 sshd 的透明通道。</p>
+      <div class="open">阅读架构说明 <span>→</span></div>
+    </a>
   </section>
 
   <section class="meta" aria-label="站点信息">
     <div class="meta-item">
       <strong>发布方式</strong>
-      <span>GitHub Actions → GitHub Pages</span>
+      <span>GitHub Actions → Markdown 构建 → GitHub Pages</span>
     </div>
     <div class="meta-item">
-      <strong>图表引擎</strong>
-      <span>Mermaid 11 · 浏览器动态渲染</span>
+      <strong>Markdown</strong>
+      <span>自动生成 HTML，并保留原始 .md 下载</span>
     </div>
     <div class="meta-item">
       <strong>用途</strong>
-      <span>Kubernetes 架构学习与源码阅读辅助</span>
+      <span>Kubernetes / Linux 架构学习与源码阅读辅助</span>
     </div>
   </section>
 
