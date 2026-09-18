@@ -22,14 +22,18 @@ target:sshd
 ## 配置示例
 
 ```sshconfig
-HostName 192.168.xx.xx
-User root
+Host dev
+    HostName 192.168.xx.xx
+    User root
 
-PreferredAuthentications publickey,password
-PubkeyAuthentication yes
-PasswordAuthentication yes
+    PreferredAuthentications publickey,password
+    PubkeyAuthentication yes
+    PasswordAuthentication yes
 
-ProxyCommand auth-cli proxy %h %p %r
+    ProxyCommand auth-cli proxy %h %p %r
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%r@%h:%p
+    ControlPersist 8h
 ```
 
 其中：
