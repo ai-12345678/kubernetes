@@ -263,3 +263,8 @@ chmod +x /home/postman-cli.sh
 LD_LIBRARY_PATH=/home/gcc-10/lib \
   exec /home/postman-cli.compat "$@"
 ```
+
+从 Kernel 的视角看，两种启动方式的关键区别是：
+
+- 执行 `exec /home/postman-cli.compat` 时，Kernel 视角中的可执行文件是 `/home/postman-cli.compat`。随后 Kernel 根据该 ELF 的 `PT_INTERP` 再加载指定的动态加载器。
+- 执行 `exec /home/gcc-10/lib/ld-linux-x86-64.so.2 xxxx` 时，Kernel 视角中的可执行文件是 `/home/gcc-10/lib/ld-linux-x86-64.so.2`，而 `xxxx` 只是传递给动态加载器的参数。
